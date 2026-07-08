@@ -437,7 +437,6 @@ function switchTab(tab) {
 /* ---------- 온보딩 ---------- */
 function initOnboarding() {
   let selectedIntensity = 'invisible';
-  renderIntensityOptions.call(null); // no-op guard
   const el = document.getElementById('ob-intensity-options');
   el.innerHTML = INTENSITY_LEVELS.map((lv, i) => `
     <div class="intensity-opt ${i === 0 ? 'selected' : ''}" data-value="${lv.value}">
