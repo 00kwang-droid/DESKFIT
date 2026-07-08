@@ -1,0 +1,15 @@
+{
+  "name": "데스크핏 · 자리운동일지",
+  "short_name": "데스크핏",
+  "description": "자리에 앉은 채로, 티 안 나게 하는 직장인 다이어트 루틴",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0E0E10",
+  "theme_color": "#0E0E10",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
