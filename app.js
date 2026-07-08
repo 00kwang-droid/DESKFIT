@@ -166,10 +166,16 @@ function armNotificationsForToday() {
 }
 
 async function requestNotificationPermission() {
-  if (!('Notification' in window)) return false;
-  if (Notification.permission === 'granted') return true;
-  const perm = await Notification.requestPermission();
-  return perm === 'granted';
+  try {
+    if (!('Notification' in window)) return false;
+    if (Notification.permission === 'granted') return true;
+    if (Notification.permission === 'denied') return false;
+    const perm = await Notification.requestPermission();
+    return perm === 'granted';
+  } catch (e) {
+    // iOS Safari(비-PWA), file://, 비보안 컨텍스트 등에서 예외가 날 수 있음 → 조용히 무시
+    return false;
+  }
 }
 
 /* ---------- 렌더링: 오늘 화면 ---------- */
@@ -464,9 +470,15 @@ function initOnboarding() {
     state.days = {}; // 새 설정으로 초기화
     saveState();
 
-    await requestNotificationPermission();
+    // 화면 전환을 먼저 확실히 실행 (알림 권한 요청이 실패/지연돼도 온보딩이 넘어가도록)
     document.getElementById('onboard-screen').classList.add('hidden');
     boot();
+
+    // 알림 권한은 뒤에서 조용히 요청 — 실패해도 앱 흐름을 막지 않음
+    try {
+      const granted = await requestNotificationPermission();
+      if (granted) armNotificationsForToday();
+    } catch (e) { /* 무시 */ }
   });
 }
 
