@@ -534,3 +534,52 @@ button {
 .hidden { display: none !important; }
 
 ::-webkit-scrollbar { width: 0; height: 0; }
+
+/* ---------- 추가: 오늘 부위 선택(daily) ---------- */
+.daily-body { margin-top: 26px; display: flex; flex-direction: column; gap: 22px; flex: 1; }
+.part-group .pg-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.part-group .pg-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; }
+.part-group .pg-all { font-size: 11px; color: var(--accent); letter-spacing: 0.02em; }
+.part-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.part-chip {
+  padding: 9px 15px; border: 1px solid var(--hairline); border-radius: 999px;
+  font-size: 13px; color: var(--text-muted); background: var(--surface); transition: all 0.12s ease;
+}
+.part-chip.selected { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+
+/* ---------- 추가: 간격 칩 ---------- */
+.chip-row { display: flex; gap: 8px; }
+.chip-opt {
+  flex: 1; text-align: center; padding: 11px 0; border: 1px solid var(--hairline);
+  border-radius: 10px; font-size: 13px; color: var(--text-muted); background: var(--surface); transition: all 0.12s ease;
+}
+.chip-opt.selected { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+
+/* ---------- 추가: 숫자 입력(몸무게) ---------- */
+.num-input {
+  background: var(--surface-hi); border: 1px solid var(--hairline); color: var(--text);
+  padding: 8px 10px; border-radius: 8px; font-family: var(--font-body); font-size: 14px; width: 82px; text-align: center;
+}
+
+/* ---------- 추가: 리포트 칼로리 단위/평가 ---------- */
+.stat-cell .stat-val small { font-size: 12px; color: var(--text-muted); font-family: var(--font-body); margin-left: 2px; }
+.eval-card {
+  margin: 10px 20px 0; padding: 16px; background: var(--surface); border: 1px solid var(--hairline);
+  border-radius: var(--radius); font-size: 13px; color: var(--text-muted); line-height: 1.65;
+}
+.eval-card b { color: var(--text); }
+.eval-btn {
+  display: block; width: calc(100% - 40px); margin: 10px 20px 4px; padding: 14px 0; text-align: center;
+  border: 1px solid var(--accent); color: var(--accent); border-radius: 12px; font-size: 13px; font-weight: 600; background: var(--accent-soft);
+}
+.eval-btn:active { background: rgba(200,155,60,0.22); }
+
+/* ---------- 추가: 타이머 방법/효과 ---------- */
+.timer-body { justify-content: space-between; padding-top: 10px; padding-bottom: 10px; gap: 16px; }
+.timer-howto, .timer-benefit { max-width: 320px; }
+.timer-cap {
+  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 6px; margin-top: 10px; text-align: center;
+}
+.timer-benefit .timer-cap { color: var(--done); margin-top: 0; }
+.timer-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; text-align: center; }
