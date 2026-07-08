@@ -1,12 +1,12 @@
-const CACHE_NAME = 'deskfit-v1';
+const CACHE_NAME = 'deskfit-v2';
 const ASSETS = [
   './',
   './index.html',
   './styles.css',
   './app.js',
   './manifest.json',
-  './icons/icon-192.png',
-  './icons/icon-512.png'
+  './icon-192.png',
+  './icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -59,8 +59,8 @@ self.addEventListener('message', (event) => {
     setTimeout(() => {
       self.registration.showNotification(title, {
         body,
-        icon: 'icons/icon-192.png',
-        badge: 'icons/icon-192.png',
+        icon: 'icon-192.png',
+        badge: 'icon-192.png',
         tag,
         data: { slotId },
         silent: false
