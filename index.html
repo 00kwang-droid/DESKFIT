@@ -100,6 +100,13 @@
     </div>
 
     <div class="settings-group">
+      <div class="group-label">데이터 백업</div>
+      <div class="settings-row" id="export-btn"><span>백업 파일 내보내기</span><span style="color:var(--accent)">↓ 저장</span></div>
+      <div class="settings-row" id="import-btn"><span>백업 불러오기</span><span style="color:var(--accent)">↑ 복원</span></div>
+    </div>
+    <input type="file" id="import-file" accept="application/json,.json" style="display:none" />
+
+    <div class="settings-group">
       <div class="group-label">일정 재생성</div>
       <div class="settings-row" id="regenerate-btn" style="justify-content:center; color:var(--accent); font-weight:600; border-radius:var(--radius)">부위 다시 골라 오늘 일정 만들기</div>
     </div>

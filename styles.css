@@ -583,3 +583,7 @@ button {
 }
 .timer-benefit .timer-cap { color: var(--done); margin-top: 0; }
 .timer-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+
+/* ---------- 추가: 설정·리포트 스크롤 하단 여백(고정 탭바에 가리지 않도록) ---------- */
+#view-settings, #view-report { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+#view-settings .settings-group:last-of-type { margin-bottom: 0; }

@@ -317,6 +317,20 @@ function computeStreak() {
   return streak;
 }
 
+/* ---------- 화면 꺼짐 방지 (Wake Lock) ---------- */
+let wakeLock = null;
+async function acquireWakeLock() {
+  try {
+    if ('wakeLock' in navigator && navigator.wakeLock && navigator.wakeLock.request) {
+      wakeLock = await navigator.wakeLock.request('screen');
+      wakeLock.addEventListener('release', () => { wakeLock = null; });
+    }
+  } catch (e) { wakeLock = null; }
+}
+async function releaseWakeLock() {
+  try { if (wakeLock) await wakeLock.release(); } catch (e) {} finally { wakeLock = null; }
+}
+
 /* ---------- 타이머 ---------- */
 let timerState = { slotId: null, remaining: 0, total: 0, running: false, intervalId: null };
 
@@ -352,13 +366,15 @@ function toggleTimer() {
   document.getElementById('timer-toggle').textContent = timerState.running ? '일시정지' : '계속하기';
   document.getElementById('dial-sub').textContent = timerState.running ? '진행 중' : '일시정지됨';
   if (timerState.running) {
+    acquireWakeLock();
     timerState.intervalId = setInterval(() => {
       timerState.remaining -= 1; updateDialTime();
       if (timerState.remaining <= 0) { clearInterval(timerState.intervalId); completeCurrentSlot(); }
     }, 1000);
-  } else { clearInterval(timerState.intervalId); }
+  } else { clearInterval(timerState.intervalId); releaseWakeLock(); }
 }
 function completeCurrentSlot() {
+  releaseWakeLock();
   const day = state.days[todayKey()];
   const slot = day.slots.find(s => s.id === timerState.slotId);
   if (slot) { slot.status = 'done'; slot.skipReason = null; }
@@ -371,6 +387,8 @@ function completeCurrentSlot() {
 }
 function closeTimer() {
   clearInterval(timerState.intervalId);
+  timerState.running = false;
+  releaseWakeLock();
   document.getElementById('timer-screen').classList.add('hidden');
   renderToday();
 }
@@ -531,6 +549,48 @@ function showToast(msg) {
   clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
 }
 
+/* ---------- 데이터 백업 ---------- */
+function exportData() {
+  try {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `deskfit-backup-${todayKey()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+    showToast('백업 파일을 저장했어요');
+  } catch (e) { showToast('백업에 실패했어요'); }
+}
+function importData(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+      if (!data || typeof data !== 'object' || typeof data.days !== 'object' || !data.settings) {
+        showToast('올바른 백업 파일이 아니에요'); return;
+      }
+      state = { onboarded: !!data.onboarded, settings: data.settings, days: data.days || {}, installDate: data.installDate || todayKey() };
+      saveState();
+      showToast('백업을 불러왔어요');
+      setTimeout(() => location.reload(), 700);
+    } catch (e) { showToast('파일을 읽지 못했어요'); }
+  };
+  reader.onerror = () => showToast('파일을 읽지 못했어요');
+  reader.readAsText(file);
+}
+async function requestPersistentStorage() {
+  try {
+    if (navigator.storage && navigator.storage.persist) {
+      const already = await navigator.storage.persisted();
+      if (!already) await navigator.storage.persist(); // 자동 삭제(eviction) 방지
+    }
+  } catch (e) { /* 무시 */ }
+}
+
 /* ---------- 탭 전환 ---------- */
 function switchTab(tab) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
@@ -639,6 +699,19 @@ function bindEvents() {
     if (willEnable) armNotificationsForToday();
   });
   document.getElementById('regenerate-btn').addEventListener('click', () => { showDailyPicker(); });
+
+  document.getElementById('export-btn').addEventListener('click', exportData);
+  document.getElementById('import-btn').addEventListener('click', () => document.getElementById('import-file').click());
+  document.getElementById('import-file').addEventListener('change', (e) => {
+    const f = e.target.files && e.target.files[0];
+    importData(f);
+    e.target.value = '';
+  });
+
+  // 화면 복귀 시 타이머가 진행 중이면 화면 꺼짐 방지 잠금 재획득 (잠금은 화면이 숨으면 자동 해제됨)
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && timerState.running && !wakeLock) acquireWakeLock();
+  });
 }
 
 /* ---------- 부팅 ---------- */
@@ -676,6 +749,7 @@ async function registerSW() {
 
 window.addEventListener('DOMContentLoaded', async () => {
   bindEvents();
+  requestPersistentStorage();
   await registerSW();
   boot();
   setInterval(() => { if (!document.getElementById('view-today').classList.contains('hidden')) renderToday(); }, 60000);
