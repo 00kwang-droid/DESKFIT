@@ -1,4 +1,4 @@
-const CACHE_NAME = 'deskfit-v6';
+const CACHE_NAME = 'deskfit-v7';
 const CORE = [
   './',
   './index.html',

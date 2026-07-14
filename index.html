@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
-<title>데스크핏 · 자리운동일지</title>
+<title>DeskFit · 자리운동일지</title>
 <meta name="theme-color" content="#0E0E10" />
 <link rel="manifest" href="manifest.json" />
 <link rel="apple-touch-icon" href="icon-192.png" />
@@ -18,118 +18,147 @@
   <!-- ============ 오늘 화면 ============ -->
   <div id="view-today">
     <header class="masthead">
-      <div class="eyebrow">Desk Fit Edition</div>
-      <h1>오늘의 자리운동</h1>
+      <div class="eyebrow" data-i18n="eyebrow_today">Desk Fit Edition</div>
+      <h1 data-i18n="today_title">오늘의 자리운동</h1>
       <div class="date-line" id="date-line">-</div>
     </header>
 
     <div class="progress-block">
       <div class="progress-row">
-        <div class="big-num" id="progress-count">0<span>/0 완료</span></div>
-        <div class="streak">연속 실행<br/><b id="streak-count">0일째</b></div>
+        <div class="big-num" id="progress-count">0<span>/0</span></div>
+        <div class="streak"><span data-i18n="streak_label">연속 실행</span><br/><b id="streak-count">0</b></div>
       </div>
       <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
     </div>
 
     <div class="schedule-list" id="schedule-list"></div>
+
+    <!-- 식단 미션 블록 -->
+    <div class="diet-block" id="diet-block"></div>
   </div>
 
   <!-- ============ 리포트 화면 ============ -->
   <div id="view-report" class="hidden">
     <header class="masthead">
-      <div class="eyebrow">Weekly Record</div>
-      <h1>운동 리포트</h1>
+      <div class="eyebrow" data-i18n="eyebrow_report">Daily Record</div>
+      <h1 data-i18n="report_title">운동 · 식단 리포트</h1>
       <div class="date-line" id="report-week-line">-</div>
     </header>
 
-    <div class="section-title">오늘 요약</div>
+    <div class="section-title" data-i18n="sec_today">오늘 요약</div>
     <div class="stat-grid">
-      <div class="stat-cell"><div class="stat-val" id="today-done">0/0</div><div class="stat-label">오늘 완료</div></div>
-      <div class="stat-cell"><div class="stat-val" id="today-kcal">0<small>kcal</small></div><div class="stat-label">오늘 소모 칼로리</div></div>
+      <div class="stat-cell"><div class="stat-val" id="today-done">0/0</div><div class="stat-label" data-i18n="lbl_today_done">운동 완료</div></div>
+      <div class="stat-cell"><div class="stat-val" id="today-mission">0/0</div><div class="stat-label" data-i18n="lbl_today_mission">다이어트 미션</div></div>
     </div>
-    <div class="eval-card" id="today-eval-text">-</div>
-    <button class="eval-btn" id="btn-claude-eval">클로드에게 오늘 운동 평가받기 →</button>
-
-    <div class="section-title">이번 주 요약</div>
-    <div class="stat-grid">
-      <div class="stat-cell"><div class="stat-val" id="stat-rate">0%</div><div class="stat-label">주간 실행률</div></div>
-      <div class="stat-cell"><div class="stat-val" id="stat-week-kcal">0<small>kcal</small></div><div class="stat-label">주간 소모 칼로리</div></div>
-      <div class="stat-cell"><div class="stat-val" id="stat-streak">0일</div><div class="stat-label">최고 연속 기록</div></div>
-      <div class="stat-cell"><div class="stat-val" id="stat-best-time">-</div><div class="stat-label">가장 잘 지킨 시간대</div></div>
+    <div class="stat-grid" style="margin-top:1px;grid-template-columns:1fr">
+      <div class="stat-cell"><div class="stat-val" id="today-kcal">0<small>kcal</small></div><div class="stat-label" data-i18n="lbl_today_kcal">오늘 소모 칼로리</div></div>
     </div>
 
-    <div class="section-title">요일별 실행률</div>
+    <div id="ai-card-host"></div>
+    <button class="eval-btn" id="btn-ai-eval" data-i18n="ai_get">AI에게 오늘 하루 평가받기 →</button>
+
+    <div class="section-title" data-i18n="sec_week">이번 주 패턴</div>
+    <div class="stat-grid">
+      <div class="stat-cell"><div class="stat-val" id="stat-rate">0%</div><div class="stat-label" data-i18n="lbl_week_rate">주간 운동 실행률</div></div>
+      <div class="stat-cell"><div class="stat-val" id="stat-week-kcal">0<small>kcal</small></div><div class="stat-label" data-i18n="lbl_week_kcal">주간 소모 칼로리</div></div>
+      <div class="stat-cell"><div class="stat-val" id="stat-streak">0</div><div class="stat-label" data-i18n="lbl_best_streak">최고 연속 기록</div></div>
+      <div class="stat-cell"><div class="stat-val" id="stat-best-time">-</div><div class="stat-label" data-i18n="lbl_best_time">가장 잘 지킨 시간대</div></div>
+    </div>
+
+    <div class="section-title" data-i18n="sec_weekday">요일별 실행률</div>
     <div class="week-chart" id="week-chart"></div>
 
-    <div class="insight-card" id="insight-card">데이터가 쌓이면 인사이트를 보여드려요.</div>
+    <div class="insight-card" id="insight-card">-</div>
   </div>
 
   <!-- ============ 설정 화면 ============ -->
   <div id="view-settings" class="hidden">
     <header class="masthead">
-      <div class="eyebrow">Preferences</div>
-      <h1>설정</h1>
-      <div class="date-line">근무 시간과 강도를 조정하세요</div>
+      <div class="eyebrow" data-i18n="eyebrow_settings">Preferences</div>
+      <h1 data-i18n="settings_title">설정</h1>
+      <div class="date-line" data-i18n="settings_sub">언어 · 테마 · 근무시간을 조정하세요</div>
     </header>
 
     <div class="settings-group">
-      <div class="group-label">근무 시간</div>
-      <div class="settings-row"><span>출근</span><input type="time" id="setting-work-start" /></div>
-      <div class="settings-row"><span>퇴근</span><input type="time" id="setting-work-end" /></div>
-      <div class="settings-row"><span>점심시간 제외</span><span><input type="time" id="setting-lunch-start" style="margin-right:4px" /><input type="time" id="setting-lunch-end" /></span></div>
+      <div class="group-label" data-i18n="grp_language">언어 (Language)</div>
+      <div class="lang-row" id="lang-options"></div>
     </div>
 
     <div class="settings-group">
-      <div class="group-label">운동 간격</div>
+      <div class="group-label" data-i18n="grp_theme">컬러 테마</div>
+      <div class="theme-row" id="theme-options"></div>
+    </div>
+
+    <div class="settings-group">
+      <div class="group-label" data-i18n="grp_missions">다이어트 미션 고르기</div>
+      <div class="mission-pick" id="mission-pick-options"></div>
+      <div class="date-line" data-i18n="missions_hint" style="margin-top:10px;font-size:12px;color:var(--text-faint);line-height:1.5"></div>
+    </div>
+
+    <div class="settings-group">
+      <div class="group-label" data-i18n="grp_ai">AI 코칭 (Gemini)</div>
+      <div class="settings-row" style="border-radius:var(--radius)"><span data-i18n="row_apikey">Gemini API 키</span><input type="password" id="setting-gemini-key" class="key-input" data-i18n-ph="apikey_ph" autocomplete="off" /></div>
+      <div class="date-line" data-i18n="apikey_hint" style="margin-top:10px;font-size:12px;color:var(--text-faint);line-height:1.5"></div>
+    </div>
+
+    <div class="settings-group">
+      <div class="group-label" data-i18n="grp_work">근무 시간</div>
+      <div class="settings-row"><span data-i18n="row_in">출근</span><input type="time" id="setting-work-start" /></div>
+      <div class="settings-row"><span data-i18n="row_out">퇴근</span><input type="time" id="setting-work-end" /></div>
+      <div class="settings-row"><span data-i18n="row_lunch">점심시간 제외</span><span><input type="time" id="setting-lunch-start" style="margin-right:4px" /><input type="time" id="setting-lunch-end" /></span></div>
+    </div>
+
+    <div class="settings-group">
+      <div class="group-label" data-i18n="grp_interval">운동 간격</div>
       <div class="chip-row" id="setting-interval-options"></div>
     </div>
 
     <div class="settings-group">
-      <div class="group-label">몸무게 (칼로리 계산용)</div>
-      <div class="settings-row" style="border-radius:var(--radius)"><span>몸무게</span><span><input type="number" id="setting-weight" class="num-input" min="30" max="200" step="1" /> kg</span></div>
+      <div class="group-label" data-i18n="grp_weight">몸무게 (칼로리 계산용)</div>
+      <div class="settings-row" style="border-radius:var(--radius)"><span data-i18n="row_weight">몸무게</span><span><input type="number" id="setting-weight" class="num-input" min="30" max="200" step="1" /> kg</span></div>
     </div>
 
     <div class="settings-group">
-      <div class="group-label">운동 강도</div>
+      <div class="group-label" data-i18n="grp_intensity">운동 강도</div>
       <div class="intensity-options" id="intensity-options"></div>
     </div>
 
     <div class="settings-group">
-      <div class="group-label">알림</div>
-      <div class="settings-row" style="border-radius:var(--radius)"><span>2분 전 준비 알림</span><div class="switch on" id="toggle-notify" data-key="notifyEnabled"></div></div>
+      <div class="group-label" data-i18n="grp_notify">알림</div>
+      <div class="settings-row" style="border-radius:var(--radius)"><span data-i18n="row_notify">2분 전 준비 알림</span><div class="switch on" id="toggle-notify" data-key="notifyEnabled"></div></div>
     </div>
 
     <div class="settings-group">
-      <div class="group-label">데이터 백업</div>
-      <div class="settings-row" id="export-btn"><span>백업 파일 내보내기</span><span style="color:var(--accent)">↓ 저장</span></div>
-      <div class="settings-row" id="import-btn"><span>백업 불러오기</span><span style="color:var(--accent)">↑ 복원</span></div>
+      <div class="group-label" data-i18n="grp_backup">데이터 백업</div>
+      <div class="settings-row" id="export-btn"><span data-i18n="row_export">백업 파일 내보내기</span><span style="color:var(--accent)" data-i18n="export_act">↓ 저장</span></div>
+      <div class="settings-row" id="import-btn"><span data-i18n="row_import">백업 불러오기</span><span style="color:var(--accent)" data-i18n="import_act">↑ 복원</span></div>
     </div>
     <input type="file" id="import-file" accept="application/json,.json" style="display:none" />
 
     <div class="settings-group">
-      <div class="group-label">일정 재생성</div>
-      <div class="settings-row" id="regenerate-btn" style="justify-content:center; color:var(--accent); font-weight:600; border-radius:var(--radius)">부위 다시 골라 오늘 일정 만들기</div>
+      <div class="group-label" data-i18n="grp_regen">일정 재생성</div>
+      <div class="settings-row" id="regenerate-btn" data-i18n="regen_act" style="justify-content:center; color:var(--accent); font-weight:600; border-radius:var(--radius)">부위 다시 골라 오늘 일정 만들기</div>
     </div>
   </div>
 
   <!-- ============ 하단 탭바 ============ -->
   <nav class="tabbar">
-    <button class="tab-btn active" data-tab="today"><span class="tab-icon">◐</span>오늘</button>
-    <button class="tab-btn" data-tab="report"><span class="tab-icon">▤</span>리포트</button>
-    <button class="tab-btn" data-tab="settings"><span class="tab-icon">⚙</span>설정</button>
+    <button class="tab-btn active" data-tab="today"><span class="tab-icon">◐</span><span data-i18n="tab_today">오늘</span></button>
+    <button class="tab-btn" data-tab="report"><span class="tab-icon">▤</span><span data-i18n="tab_report">리포트</span></button>
+    <button class="tab-btn" data-tab="settings"><span class="tab-icon">⚙</span><span data-i18n="tab_settings">설정</span></button>
   </nav>
 
   <!-- ============ 타이머 전체화면 ============ -->
   <div id="timer-screen" class="timer-screen hidden">
     <div class="timer-top">
       <button id="timer-close">✕</button>
-      <div class="timer-label">진행 중인 운동</div>
+      <div class="timer-label" data-i18n="timer_label">진행 중인 운동</div>
       <div style="width:22px"></div>
     </div>
     <div class="timer-body">
       <div class="timer-howto">
         <div class="timer-exercise-name" id="timer-ex-name">-</div>
-        <div class="timer-cap">운동 방법</div>
+        <div class="timer-cap" data-i18n="timer_howto">운동 방법</div>
         <div class="timer-text" id="timer-method-text">-</div>
       </div>
       <div class="dial-wrap">
@@ -143,36 +172,41 @@
         </div>
       </div>
       <div class="timer-benefit">
-        <div class="timer-cap">이런 데 도움돼요</div>
+        <div class="timer-cap" data-i18n="timer_benefit">이런 데 도움돼요</div>
         <div class="timer-text" id="timer-benefit-text">-</div>
       </div>
     </div>
     <div class="timer-controls">
-      <button class="btn btn-ghost" id="timer-skip">건너뛰기</button>
-      <button class="btn btn-primary" id="timer-toggle">시작</button>
+      <button class="btn btn-ghost" id="timer-skip" data-i18n="btn_skip">건너뛰기</button>
+      <button class="btn btn-primary" id="timer-toggle" data-i18n="btn_start">시작</button>
     </div>
   </div>
 
   <!-- ============ 스킵 사유 시트 ============ -->
   <div id="skip-sheet" class="sheet-overlay hidden">
     <div class="sheet">
-      <h3>왜 못 하셨나요?</h3>
-      <div class="sheet-opt" data-reason="회의중">회의 중이었어요</div>
-      <div class="sheet-opt" data-reason="외근">외근/자리 비움</div>
-      <div class="sheet-opt" data-reason="깜빡함">깜빡했어요</div>
-      <div class="sheet-opt" data-reason="컨디션">컨디션이 안 좋았어요</div>
-      <div class="sheet-opt" data-reason="기타" style="color:var(--text-faint)">그냥 넘어갈게요</div>
+      <h3 data-i18n="skip_title">왜 못 하셨나요?</h3>
+      <div class="sheet-opt" data-reason="meeting" data-i18n="skip_meeting">회의 중이었어요</div>
+      <div class="sheet-opt" data-reason="away" data-i18n="skip_away">외근/자리 비움</div>
+      <div class="sheet-opt" data-reason="forgot" data-i18n="skip_forgot">깜빡했어요</div>
+      <div class="sheet-opt" data-reason="cond" data-i18n="skip_cond">컨디션이 안 좋았어요</div>
+      <div class="sheet-opt" data-reason="etc" data-i18n="skip_etc" style="color:var(--text-faint)">그냥 넘어갈게요</div>
     </div>
+  </div>
+
+  <!-- ============ 저녁 마감 시트 ============ -->
+  <div id="review-sheet" class="sheet-overlay hidden">
+    <div class="sheet"></div>
   </div>
 
   <!-- ============ 온보딩(최초 1회) ============ -->
   <div id="onboard-screen" class="onboard-screen hidden">
-    <div class="eyebrow">Welcome</div>
-    <h1>자리에서, 티 안 나게.<br/>오늘부터 시작해요.</h1>
-    <p class="sub">근무 시간과 운동 간격을 알려주시면<br/>회의·점심시간을 피해서 하루 스케줄을 짜드릴게요.</p>
+    <div class="eyebrow" data-i18n="onboard_eyebrow">Welcome</div>
+    <h1 data-i18n="onboard_h1" data-i18n-html="1">자리에서, 티 안 나게.<br/>오늘부터 시작해요.</h1>
+    <p class="sub" data-i18n="onboard_sub" data-i18n-html="1"></p>
     <div class="onboard-form">
       <div>
-        <div class="field-label">근무 시간</div>
+        <div class="field-label" data-i18n="ob_work">근무 시간</div>
         <div class="time-row">
           <input type="time" id="ob-work-start" value="09:00" />
           <span style="color:var(--text-faint)">–</span>
@@ -180,7 +214,7 @@
         </div>
       </div>
       <div>
-        <div class="field-label">점심시간 (운동 제외)</div>
+        <div class="field-label" data-i18n="ob_lunch">점심시간 (운동 제외)</div>
         <div class="time-row">
           <input type="time" id="ob-lunch-start" value="12:00" />
           <span style="color:var(--text-faint)">–</span>
@@ -188,31 +222,31 @@
         </div>
       </div>
       <div>
-        <div class="field-label">운동 간격</div>
+        <div class="field-label" data-i18n="ob_interval">운동 간격</div>
         <div class="chip-row" id="ob-interval-options"></div>
       </div>
       <div>
-        <div class="field-label">몸무게 (칼로리 계산용)</div>
+        <div class="field-label" data-i18n="ob_weight">몸무게 (칼로리 계산용)</div>
         <div class="time-row"><input type="number" id="ob-weight" class="num-input" value="65" min="30" max="200" step="1" /> <span style="color:var(--text-muted)">kg</span></div>
       </div>
       <div>
-        <div class="field-label">운동 강도</div>
+        <div class="field-label" data-i18n="ob_intensity">운동 강도</div>
         <div class="intensity-options" id="ob-intensity-options"></div>
       </div>
     </div>
     <div class="onboard-footer">
-      <button class="btn btn-primary" id="ob-start-btn" style="width:100%">시작하기</button>
+      <button class="btn btn-primary" id="ob-start-btn" data-i18n="ob_start" style="width:100%">시작하기</button>
     </div>
   </div>
 
   <!-- ============ 매일 아침 부위 선택 ============ -->
   <div id="daily-screen" class="onboard-screen hidden">
-    <div class="eyebrow">Today's Focus</div>
-    <h1>오늘 어디를<br/>운동할까요?</h1>
-    <p class="sub">고른 부위 위주로 오늘 하루 스케줄을 짜드려요.<br/>여러 개 골라도 좋고, 안 고르면 전신 밸런스로 짜드려요.</p>
+    <div class="eyebrow" data-i18n="daily_eyebrow">Today's Focus</div>
+    <h1 data-i18n="daily_h1" data-i18n-html="1">오늘 어디를<br/>운동할까요?</h1>
+    <p class="sub" data-i18n="daily_sub" data-i18n-html="1"></p>
     <div class="daily-body" id="daily-parts"></div>
     <div class="onboard-footer">
-      <button class="btn btn-primary" id="daily-start-btn" style="width:100%">오늘 스케줄 만들기</button>
+      <button class="btn btn-primary" id="daily-start-btn" data-i18n="daily_make" style="width:100%">오늘 스케줄 만들기</button>
     </div>
   </div>
 
