@@ -1,9 +1,9 @@
-const CACHE_NAME = 'deskfit-v7';
+const CACHE_NAME = 'deskfit-v8';
 const CORE = [
   './',
   './index.html',
-  './styles.css',
-  './app.js',
+  './styles.css?v=8',
+  './app.js?v=8',
   './manifest.json',
   './icon-192.png',
   './icon-512.png'
