@@ -61,7 +61,22 @@ const T = {
     row_export: '백업 파일 내보내기', export_act: '↓ 저장', row_import: '백업 불러오기', import_act: '↑ 복원',
     regen_act: '부위 다시 골라 오늘 일정 만들기',
     missions_hint: '자기한테 맞는 미션만 3~5개 고르면 매일 오늘 화면에 떠요.',
-    apikey_hint: 'Google AI Studio에서 발급한 키를 넣으면 리포트에서 바로 코칭을 받아요. 키는 이 기기에만 저장돼요.',
+    apikey_hint: '키는 이 기기에만 저장되고, 평가할 때만 Google 서버로 전송돼요.',
+    apikey_get: 'Google AI Studio에서 키 발급받기 →',
+    apikey_step1: '위 링크를 열고 Google 계정으로 로그인',
+    apikey_step2: "'Create API key' 클릭 (무료 · 카드 불필요)",
+    apikey_step3: 'AIza… 로 시작하는 키를 복사',
+    apikey_step4: '위 칸에 붙여넣고 아래 [연결 테스트]를 누르기',
+    apikey_note: '※ 예전에 만든 키가 제한 없음(Unrestricted) 상태면 차단될 수 있어요. 그럴 땐 AI Studio에서 키를 새로 만드세요.',
+    row_test: '연결 테스트', test_act: '테스트', test_ing: '확인 중…',
+    test_ok: '연결 성공 · {model}', test_fail: '연결 실패',
+    row_model: '사용 모델', model_auto: '자동 선택',
+    err_key_invalid: 'API 키가 올바르지 않아요. 공백 없이 다시 붙여넣어 주세요.',
+    err_key_blocked: '키가 차단됐거나 권한이 없어요. AI Studio에서 새 키를 만들어 주세요.',
+    err_quota: '무료 사용량을 초과했어요. 잠시 후 다시 시도해 주세요.',
+    err_model: '이 키로 쓸 수 있는 모델을 찾지 못했어요.',
+    err_region: '현재 지역에서는 무료 등급을 쓸 수 없어요. 결제 설정이 필요해요.',
+    err_network: '네트워크에 연결하지 못했어요. 인터넷 상태를 확인해 주세요.',
     onboard_eyebrow: 'Welcome', onboard_h1: '자리에서, 티 안 나게.<br/>오늘부터 시작해요.',
     onboard_sub: '근무 시간과 운동 간격을 알려주시면<br/>회의·점심시간을 피해서 하루 스케줄을 짜드릴게요.',
     ob_work: '근무 시간', ob_lunch: '점심시간 (운동 제외)', ob_interval: '운동 간격',
@@ -114,7 +129,22 @@ const T = {
     row_export: 'Export backup file', export_act: '↓ Save', row_import: 'Import backup', import_act: '↑ Restore',
     regen_act: 'Pick parts and rebuild today',
     missions_hint: 'Pick 3–5 that fit you; they appear on Today every day.',
-    apikey_hint: 'Paste a key from Google AI Studio to get coaching right in the report. Stored on this device only.',
+    apikey_hint: 'The key is stored only on this device, and is sent to Google only when you ask for a review.',
+    apikey_get: 'Get a key at Google AI Studio →',
+    apikey_step1: 'Open the link above and sign in with your Google account',
+    apikey_step2: "Click 'Create API key' (free, no credit card)",
+    apikey_step3: 'Copy the key starting with AIza…',
+    apikey_step4: 'Paste it above, then tap [Test connection] below',
+    apikey_note: '※ Older keys left Unrestricted may be blocked. If so, create a new key in AI Studio.',
+    row_test: 'Test connection', test_act: 'Test', test_ing: 'Checking…',
+    test_ok: 'Connected · {model}', test_fail: 'Connection failed',
+    row_model: 'Model', model_auto: 'Auto',
+    err_key_invalid: "That API key isn't valid. Paste it again with no extra spaces.",
+    err_key_blocked: 'The key is blocked or lacks permission. Create a new key in AI Studio.',
+    err_quota: "You've hit the free usage limit. Try again in a bit.",
+    err_model: 'No usable model was found for this key.',
+    err_region: "The free tier isn't available in your region. Billing needs to be enabled.",
+    err_network: "Couldn't reach the network. Check your internet connection.",
     onboard_eyebrow: 'Welcome', onboard_h1: 'At your desk, unnoticed.<br/>Start today.',
     onboard_sub: 'Tell us your work hours and interval, and we\'ll plan a day<br/>that avoids meetings and lunch.',
     ob_work: 'Work hours', ob_lunch: 'Lunch (no workout)', ob_interval: 'Interval',
@@ -167,7 +197,22 @@ const T = {
     row_export: 'バックアップを書き出す', export_act: '↓ 保存', row_import: 'バックアップを読み込む', import_act: '↑ 復元',
     regen_act: '部位を選び直して今日の予定を作る',
     missions_hint: '自分に合うものを3〜5個選ぶと毎日「今日」に表示されます。',
-    apikey_hint: 'Google AI Studioのキーを入れるとレポートですぐコーチングが受けられます。キーはこの端末だけに保存されます。',
+    apikey_hint: 'キーはこの端末にのみ保存され、評価するときだけGoogleへ送信されます。',
+    apikey_get: 'Google AI Studioでキーを取得 →',
+    apikey_step1: '上のリンクを開き、Googleアカウントでログイン',
+    apikey_step2: "「Create API key」をクリック（無料・カード不要）",
+    apikey_step3: 'AIza… で始まるキーをコピー',
+    apikey_step4: '上の欄に貼り付け、下の[接続テスト]を押す',
+    apikey_note: '※ 以前作った「制限なし(Unrestricted)」のキーはブロックされることがあります。その場合はAI Studioで新しいキーを作成してください。',
+    row_test: '接続テスト', test_act: 'テスト', test_ing: '確認中…',
+    test_ok: '接続成功 · {model}', test_fail: '接続失敗',
+    row_model: '使用モデル', model_auto: '自動選択',
+    err_key_invalid: 'APIキーが正しくありません。空白なしで貼り直してください。',
+    err_key_blocked: 'キーがブロックされているか権限がありません。AI Studioで新しいキーを作成してください。',
+    err_quota: '無料枠の上限に達しました。しばらくしてからお試しください。',
+    err_model: 'このキーで使えるモデルが見つかりませんでした。',
+    err_region: 'この地域では無料枠を利用できません。お支払い設定が必要です。',
+    err_network: 'ネットワークに接続できませんでした。通信状態をご確認ください。',
     onboard_eyebrow: 'Welcome', onboard_h1: '席で、こっそり。<br/>今日から始めましょう。',
     onboard_sub: '勤務時間と運動間隔を教えていただければ<br/>会議・昼休みを避けて一日の予定を作ります。',
     ob_work: '勤務時間', ob_lunch: '昼休み（運動を除外）', ob_interval: '運動間隔',
@@ -220,7 +265,22 @@ const T = {
     row_export: '导出备份文件', export_act: '↓ 保存', row_import: '导入备份', import_act: '↑ 恢复',
     regen_act: '重新选部位并生成今日安排',
     missions_hint: '选 3–5 个适合自己的，每天会出现在「今天」页。',
-    apikey_hint: '填入 Google AI Studio 的密钥，就能在报告里直接获得教练点评。密钥只存在本机。',
+    apikey_hint: '密钥只保存在本机，仅在请求点评时发送给 Google。',
+    apikey_get: '前往 Google AI Studio 获取密钥 →',
+    apikey_step1: '打开上面的链接，用 Google 账号登录',
+    apikey_step2: "点击「Create API key」（免费，无需信用卡）",
+    apikey_step3: '复制以 AIza… 开头的密钥',
+    apikey_step4: '粘贴到上面的输入框，再点下面的[连接测试]',
+    apikey_note: '※ 以前创建的「未限制(Unrestricted)」密钥可能被封禁。若如此，请在 AI Studio 重新创建密钥。',
+    row_test: '连接测试', test_act: '测试', test_ing: '检查中…',
+    test_ok: '连接成功 · {model}', test_fail: '连接失败',
+    row_model: '使用模型', model_auto: '自动选择',
+    err_key_invalid: 'API 密钥无效，请重新粘贴且不要带空格。',
+    err_key_blocked: '密钥被封禁或没有权限。请在 AI Studio 新建密钥。',
+    err_quota: '已超出免费用量，请稍后再试。',
+    err_model: '没有找到该密钥可用的模型。',
+    err_region: '当前地区无法使用免费额度，需要开启结算。',
+    err_network: '无法连接网络，请检查网络状态。',
     onboard_eyebrow: 'Welcome', onboard_h1: '在座位上，不动声色。<br/>从今天开始。',
     onboard_sub: '告诉我们工作时间和运动间隔，<br/>我们会避开会议和午休为你排好一天。',
     ob_work: '工作时间', ob_lunch: '午休（不排运动）', ob_interval: '运动间隔',
@@ -510,6 +570,7 @@ function loadState() {
     if (!s.settings.theme) s.settings.theme = 'gold';
     if (!Array.isArray(s.settings.dietMissions)) s.settings.dietMissions = DEFAULT_MISSIONS.slice();
     if (typeof s.settings.geminiKey !== 'string') s.settings.geminiKey = '';
+    if (typeof s.settings.geminiModel !== 'string') s.settings.geminiModel = '';
   }
   return s;
 }
@@ -951,8 +1012,19 @@ function localEvaluation(day) {
   return `<div class="ai-section">${msg}</div>`;
 }
 
-/* ---------- Gemini 인앱 평가 ---------- */
-const GEMINI_MODEL = 'gemini-2.0-flash';
+/* ---------- Gemini 인앱 평가 ----------
+   모델은 하드코딩하지 않는다. 구글이 모델을 주기적으로 셧다운하기 때문에
+   (예: gemini-2.0-flash는 2026-06-01 종료) 키로 모델 목록을 조회해
+   쓸 수 있는 모델을 자동 선택하고, 404가 나면 다시 감지한다.
+   ------------------------------------------------------------------ */
+const GEMINI_API = 'https://generativelanguage.googleapis.com/v1beta';
+const MODEL_CANDIDATES = [
+  'gemini-3.1-flash-lite',   // 저렴 · 셧다운 2027-05-07
+  'gemini-3.5-flash',
+  'gemini-3-flash-preview',
+  'gemini-2.5-flash-lite',
+  'gemini-2.5-flash',
+];
 function buildGeminiPrompt(day) {
   const total = day.slots.length, done = day.slots.filter(s => s.status === 'done').length;
   const kcal = Math.round(dayKcal(day));
@@ -982,26 +1054,120 @@ function buildGeminiPrompt(day) {
   ].join('\n');
 }
 
+function rawErr(body) {
+  return (body && body.error && body.error.message) ? String(body.error.message) : '';
+}
+function geminiErrorMessage(status, body) {
+  const st = (body && body.error && body.error.status) || '';
+  const msg = rawErr(body);
+  if (status === 400 && /API_KEY_INVALID|API key not valid|API key expired/i.test(msg)) return t('err_key_invalid');
+  if (status === 400 && st === 'FAILED_PRECONDITION') return t('err_region');
+  if (status === 400 && /INVALID_ARGUMENT/i.test(st)) return t('err_key_invalid');
+  if (status === 401 || status === 403) return t('err_key_blocked');
+  if (status === 429) return t('err_quota');
+  if (status === 404) return t('err_model');
+  return t('ai_err');
+}
+
+async function listGeminiModels(key) {
+  const res = await fetch(`${GEMINI_API}/models?key=${encodeURIComponent(key)}`);
+  let body = null;
+  try { body = await res.json(); } catch (e) {}
+  if (!res.ok) return { error: { status: res.status, body } };
+  const names = (body && body.models || [])
+    .filter(m => (m.supportedGenerationMethods || []).indexOf('generateContent') >= 0)
+    .map(m => String(m.name || '').replace(/^models\//, ''));
+  return { models: names };
+}
+function pickModel(names) {
+  for (const c of MODEL_CANDIDATES) if (names.indexOf(c) >= 0) return c;
+  // 후보가 모두 사라졌으면 이름으로 유추(이미지/음성/임베딩 모델 제외)
+  const flash = names.find(n => /flash/.test(n) && !/image|tts|live|audio|embedding|robotics/.test(n));
+  if (flash) return flash;
+  const any = names.find(n => /^gemini/.test(n) && !/image|tts|live|audio|embedding|robotics/.test(n));
+  return any || names[0] || null;
+}
+async function resolveModel(key, force) {
+  if (!force && state.settings.geminiModel) return { model: state.settings.geminiModel };
+  const r = await listGeminiModels(key);
+  if (r.error) return { error: r.error };
+  const m = pickModel(r.models);
+  if (!m) return { error: { status: 404, body: null } };
+  state.settings.geminiModel = m; saveState();
+  return { model: m };
+}
+
+async function geminiGenerate(model, key, day) {
+  const res = await fetch(`${GEMINI_API}/models/${model}:generateContent?key=${encodeURIComponent(key)}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: buildGeminiPrompt(day) }] }],
+      generationConfig: { temperature: 0.7, responseMimeType: 'application/json' },
+    }),
+  });
+  let body = null;
+  try { body = await res.json(); } catch (e) {}
+  return { ok: res.ok, status: res.status, body };
+}
+
 async function callGemini(day) {
   const key = (state.settings && state.settings.geminiKey || '').trim();
   if (!key) return { error: 'nokey' };
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(key)}`;
   try {
-    const res = await fetch(url, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: buildGeminiPrompt(day) }] }],
-        generationConfig: { temperature: 0.7, responseMimeType: 'application/json' },
-      }),
-    });
-    if (!res.ok) return { error: 'http' };
-    const data = await res.json();
-    const text = (((data.candidates || [])[0] || {}).content || {}).parts;
-    let raw = Array.isArray(text) ? text.map(p => p.text || '').join('') : '';
+    let rm = await resolveModel(key, false);
+    if (rm.error) return { error: 'api', message: geminiErrorMessage(rm.error.status, rm.error.body), raw: rawErr(rm.error.body) };
+    let model = rm.model;
+
+    let res = await geminiGenerate(model, key, day);
+    // 모델이 은퇴했으면(404) 한 번만 다시 감지해서 재시도
+    if (!res.ok && res.status === 404) {
+      rm = await resolveModel(key, true);
+      if (rm.error) return { error: 'api', message: geminiErrorMessage(rm.error.status, rm.error.body), raw: rawErr(rm.error.body) };
+      if (rm.model !== model) { model = rm.model; res = await geminiGenerate(model, key, day); }
+    }
+    if (!res.ok) return { error: 'api', message: geminiErrorMessage(res.status, res.body), raw: rawErr(res.body) };
+
+    const cand = ((res.body && res.body.candidates) || [])[0];
+    const parts = cand && cand.content && cand.content.parts;
+    let raw = Array.isArray(parts) ? parts.map(p => p.text || '').join('') : '';
     raw = raw.replace(/```json|```/g, '').trim();
-    const parsed = JSON.parse(raw);
-    return { ok: true, good: parsed.good, improve: parsed.improve, tomorrow: parsed.tomorrow };
-  } catch (e) { return { error: 'parse' }; }
+    let parsed = null;
+    try { parsed = JSON.parse(raw); } catch (e) {}
+    if (!parsed) {
+      if (raw) return { ok: true, good: raw, improve: '', tomorrow: '', model };
+      return { error: 'api', message: t('ai_err'), raw: '' };
+    }
+    return { ok: true, good: parsed.good, improve: parsed.improve, tomorrow: parsed.tomorrow, model };
+  } catch (e) {
+    // fetch 자체 실패 = 네트워크/CORS
+    return { error: 'api', message: t('err_network'), raw: String((e && e.message) || e) };
+  }
+}
+
+async function testGeminiConnection() {
+  const el = document.getElementById('gemini-test-status');
+  const input = document.getElementById('setting-gemini-key');
+  const typed = (input && input.value || '').trim();
+  if (typed && typed !== state.settings.geminiKey) { state.settings.geminiKey = typed; state.settings.geminiModel = ''; saveState(); }
+  const key = (state.settings.geminiKey || '').trim();
+  if (!key) { el.textContent = t('ai_nokey'); el.style.color = 'var(--skip)'; return; }
+  el.textContent = t('test_ing'); el.style.color = 'var(--text-muted)';
+  try {
+    const r = await resolveModel(key, true);
+    if (r.error) {
+      const detail = rawErr(r.error.body);
+      el.innerHTML = `${t('test_fail')} · ${geminiErrorMessage(r.error.status, r.error.body)}` + (detail ? `<br/><span style="color:var(--text-faint);font-size:11px">${detail}</span>` : '');
+      el.style.color = 'var(--skip)'; return;
+    }
+    el.textContent = t('test_ok', { model: r.model });
+    el.style.color = 'var(--done)';
+    const mn = document.getElementById('gemini-model-name');
+    if (mn) mn.textContent = r.model;
+  } catch (e) {
+    el.textContent = `${t('test_fail')} · ${t('err_network')}`;
+    el.style.color = 'var(--skip)';
+  }
 }
 
 function renderAiCard(evalObj) {
@@ -1009,6 +1175,7 @@ function renderAiCard(evalObj) {
   const btn = document.getElementById('btn-ai-eval');
   if (!host) return;
   if (!evalObj) { host.innerHTML = ''; if (btn) btn.textContent = t('ai_get'); return; }
+  const usedModel = evalObj.model || (state.settings && state.settings.geminiModel) || 'Gemini';
   const modelName = 'Gemini';
   host.innerHTML = `
     <div class="ai-card">
@@ -1018,7 +1185,7 @@ function renderAiCard(evalObj) {
         <div class="ai-section"><b>${t('ai_improve')}</b> — ${evalObj.improve || '-'}</div>
         <div class="ai-section"><b>${t('ai_tomorrow')}</b> — ${evalObj.tomorrow || '-'}</div>
       </div>
-      <div class="ai-foot">${t('ai_foot', { model: GEMINI_MODEL })}</div>
+      <div class="ai-foot">${t('ai_foot', { model: usedModel })}</div>
     </div>`;
   if (btn) btn.textContent = t('ai_regen');
 }
@@ -1035,12 +1202,14 @@ async function runAiEval() {
   host.innerHTML = `<div class="ai-card"><div class="ai-loading">${t('ai_loading')}</div></div>`;
   const r = await callGemini(day);
   if (r && r.ok) {
-    day.aiEval = { good: r.good, improve: r.improve, tomorrow: r.tomorrow, at: Date.now() };
+    day.aiEval = { good: r.good, improve: r.improve, tomorrow: r.tomorrow, model: r.model, at: Date.now() };
     saveState(); renderAiCard(day.aiEval);
   } else if (r && r.error === 'nokey') {
     host.innerHTML = `<div class="ai-card"><div class="ai-body">${localEvaluation(day)}</div></div>`;
   } else {
-    host.innerHTML = `<div class="ai-card"><div class="ai-body" style="color:var(--skip)">${t('ai_err')}</div></div>`;
+    const msg = (r && r.message) || t('ai_err');
+    const detail = (r && r.raw) ? `<div style="margin-top:8px;color:var(--text-faint);font-size:11px;line-height:1.5">${r.raw}</div>` : '';
+    host.innerHTML = `<div class="ai-card"><div class="ai-body" style="color:var(--skip)">${msg}${detail}</div></div>`;
   }
 }
 
@@ -1156,6 +1325,8 @@ function renderSettings() {
   document.getElementById('setting-lunch-end').value = s.lunchEnd;
   document.getElementById('setting-weight').value = s.weightKg || 65;
   document.getElementById('setting-gemini-key').value = s.geminiKey || '';
+  const mn = document.getElementById('gemini-model-name');
+  if (mn) mn.textContent = s.geminiModel || t('model_auto');
   document.getElementById('toggle-notify').classList.toggle('on', s.notifyEnabled);
   renderChipOptions('setting-interval-options', INTERVAL_OPTIONS.map(v => ({ value: v, label: `${v}${t('min_unit')}` })), Number(s.interval), (val) => { s.interval = Number(val); saveState(); });
   renderIntensityOptions('intensity-options', s.intensity, (val) => { s.intensity = val; saveState(); });
@@ -1193,6 +1364,7 @@ function importData(file) {
       if (!state.settings.theme) state.settings.theme = 'gold';
       if (!Array.isArray(state.settings.dietMissions)) state.settings.dietMissions = DEFAULT_MISSIONS.slice();
       if (typeof state.settings.geminiKey !== 'string') state.settings.geminiKey = '';
+      if (typeof state.settings.geminiModel !== 'string') state.settings.geminiModel = '';
       saveState(); showToast(t('t_restore_ok'));
       setTimeout(() => location.reload(), 700);
     } catch (e) { showToast(t('t_restore_fail')); }
@@ -1245,7 +1417,7 @@ function initOnboarding() {
       weightKg: Number(document.getElementById('ob-weight').value) || 65,
       intensity, interval, notifyEnabled: true,
       lang: curLang(), theme: state.settings ? state.settings.theme : 'gold',
-      dietMissions: DEFAULT_MISSIONS.slice(), geminiKey: '',
+      dietMissions: DEFAULT_MISSIONS.slice(), geminiKey: '', geminiModel: '',
     };
     state.onboarded = true; state.days = {}; saveState();
     document.getElementById('onboard-screen').classList.add('hidden');
@@ -1306,7 +1478,20 @@ function bindEvents() {
   document.getElementById('setting-lunch-start').addEventListener('change', (e) => { state.settings.lunchStart = e.target.value; saveState(); });
   document.getElementById('setting-lunch-end').addEventListener('change', (e) => { state.settings.lunchEnd = e.target.value; saveState(); });
   document.getElementById('setting-weight').addEventListener('change', (e) => { state.settings.weightKg = Number(e.target.value) || 65; saveState(); });
-  document.getElementById('setting-gemini-key').addEventListener('change', (e) => { state.settings.geminiKey = e.target.value.trim(); saveState(); showToast(t('t_key_saved')); });
+  const keyInput = document.getElementById('setting-gemini-key');
+  const saveKey = (e, toast) => {
+    const v = (e.target.value || '').trim();
+    if (v === state.settings.geminiKey) return;
+    state.settings.geminiKey = v;
+    state.settings.geminiModel = '';   // 키가 바뀌면 모델을 다시 감지
+    saveState();
+    const mn = document.getElementById('gemini-model-name');
+    if (mn) mn.textContent = t('model_auto');
+    if (toast) showToast(t('t_key_saved'));
+  };
+  keyInput.addEventListener('input', (e) => saveKey(e, false));
+  keyInput.addEventListener('change', (e) => saveKey(e, true));
+  document.getElementById('gemini-test-btn').addEventListener('click', testGeminiConnection);
   document.getElementById('toggle-notify').addEventListener('click', async (e) => {
     const willEnable = !state.settings.notifyEnabled;
     if (willEnable) { if (!(await requestNotificationPermission())) { showToast(t('t_need_key')); return; } }

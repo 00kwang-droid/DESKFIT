@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="icon-192.png" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<link rel="stylesheet" href="styles.css?v=8" />
+<link rel="stylesheet" href="styles.css?v=9" />
 </head>
 <body>
 
@@ -97,8 +97,20 @@
 
     <div class="settings-group">
       <div class="group-label" data-i18n="grp_ai">AI 코칭 (Gemini)</div>
-      <div class="settings-row" style="border-radius:var(--radius)"><span data-i18n="row_apikey">Gemini API 키</span><input type="password" id="setting-gemini-key" class="key-input" data-i18n-ph="apikey_ph" autocomplete="off" /></div>
-      <div class="date-line" data-i18n="apikey_hint" style="margin-top:10px;font-size:12px;color:var(--text-faint);line-height:1.5"></div>
+      <div class="settings-row" style="border-radius:var(--radius) var(--radius) 0 0"><span data-i18n="row_apikey">Gemini API 키</span><input type="password" id="setting-gemini-key" class="key-input" data-i18n-ph="apikey_ph" autocomplete="off" spellcheck="false" /></div>
+      <div class="settings-row"><span data-i18n="row_model">사용 모델</span><span id="gemini-model-name" style="color:var(--text-muted);font-size:13px">-</span></div>
+      <div class="settings-row" id="gemini-test-btn" style="border-radius:0 0 var(--radius) var(--radius)"><span data-i18n="row_test">연결 테스트</span><span style="color:var(--accent);font-weight:600" data-i18n="test_act">테스트</span></div>
+      <div id="gemini-test-status"></div>
+
+      <a class="key-link" id="apikey-link" href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" data-i18n="apikey_get">Google AI Studio에서 키 발급받기 →</a>
+      <ol class="key-steps">
+        <li data-i18n="apikey_step1"></li>
+        <li data-i18n="apikey_step2"></li>
+        <li data-i18n="apikey_step3"></li>
+        <li data-i18n="apikey_step4"></li>
+      </ol>
+      <div class="key-note" data-i18n="apikey_note"></div>
+      <div class="key-note" data-i18n="apikey_hint"></div>
     </div>
 
     <div class="settings-group">
@@ -140,7 +152,7 @@
       <div class="settings-row" id="regenerate-btn" data-i18n="regen_act" style="justify-content:center; color:var(--accent); font-weight:600; border-radius:var(--radius)">부위 다시 골라 오늘 일정 만들기</div>
     </div>
 
-    <div style="text-align:center; color:var(--text-faint); font-size:11px; letter-spacing:0.08em; padding:4px 0 8px">DeskFit · build 8 (i18n · themes · diet)</div>
+    <div style="text-align:center; color:var(--text-faint); font-size:11px; letter-spacing:0.08em; padding:4px 0 8px">DeskFit · build 9 (i18n · themes · diet)</div>
   </div>
 
   <!-- ============ 하단 탭바 ============ -->
@@ -256,6 +268,6 @@
 
 </div>
 
-<script src="app.js?v=8"></script>
+<script src="app.js?v=9"></script>
 </body>
 </html>

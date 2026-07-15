@@ -396,6 +396,20 @@ button { font-family: inherit; border: none; background: none; color: inherit; c
 }
 .mission-chip.selected { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
 
+/* API 키 도움말 */
+#gemini-test-status { margin-top: 10px; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+#gemini-test-status:empty { display: none; }
+.key-link {
+  display: block; margin-top: 12px; padding: 12px 14px; text-align: center;
+  border: 1px solid var(--accent); background: var(--accent-soft); color: var(--accent);
+  border-radius: 10px; font-size: 13px; font-weight: 600; text-decoration: none;
+}
+.key-link:active { background: var(--accent-press); }
+.key-steps { margin: 12px 0 0; padding-left: 18px; }
+.key-steps li { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-bottom: 4px; }
+.key-steps li::marker { color: var(--accent); }
+.key-note { margin-top: 10px; font-size: 11px; color: var(--text-faint); line-height: 1.55; }
+
 /* ---------- 바텀 시트(스킵/저녁 마감) ---------- */
 .sheet-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 60; display: flex; align-items: flex-end; justify-content: center; }
 .sheet {
